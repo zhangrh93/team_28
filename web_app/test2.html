@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+	  <link href='http://fonts.googleapis.com/css?family=Open+Sans|Raleway' rel='stylesheet' type='text/css'>
+	  html, body, #map-canvas {
+      height: 100%;
+      margin: 0px;
+      padding: 0px;
+			font-family: 'Raleway', sans-serif;
+			z-index:1;
+    }
+  
+		#draggable {
+			z-index:100; 
+			background-color: rgba(200,200,255,.7); 
+			width: 250px;
+			padding: 20px;
+			position:absolute;
+			top:10px;
+			left:100px;
+			cursor: move;
+			border: black 1px solid;
+		}
+
+		#radius-label, #opacity-label, #max-label {
+			margin-top: 10px;
+		}
+
+		#radius-slider, #opacity-slider, #max-slider {
+			width:250px;
+			margin-top: 10px;
+		}
+		#project {
+			font-size: 10pt;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+
+		
+
+		#radius-slider .ui-slider-handle, 
+		#opacity-slider .ui-slider-handle,
+		#max-slider .ui-slider-handle {
+			cursor:pointer;
+		}
+		
+		.total{
+		 background-color:  #f4511e;
+		 border-radius: 18px;
+		 padding: 12px 28px;
+		 }
+		 .pratio{
+		 background-color:  #f4511e;
+		 border-radius: 18px;
+		 padding: 12px 28px;
+		 }
+		<script src="./papaparse.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=visualization"></script>
+
+	<script src="./jquery-2.1.1.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+
+    </style>
+  </head>
+  <body>
+	<div id="map"></div>
+		<div id="draggable">
+		
+		
+		<div id="tt">
+		<button  class="total" name="ct" onclick = "draw_aurin(age)"   />clear tweets data</button>
+		</div>
+
+		<div id="tt">
+		<button  class="total" name="tt" onclick = "draw_heat_map(total)"   />Total tweets</button>
+		</div>
+		<div id="radius-slider"></div>
+
+		<div id="rt">
+		<button  class="pratio" name="rt" onclick = "draw_heat_map(ratio)"  />Rate of Positive Tweets</button>
+		</div>
+		
+
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script>
+		var map;
+		var total = "total"
+		var ratio = "ratio"
+		var age = "med_age"
+		function initMap() {
+			
+			map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 9,
+				center: {lat: -38, lng: 145},
+				mapTypeId: 'terrain'
+			});
+			//var s = "total"
+			//draw_heat_map(s)
+		}
+		
+		function draw_heat_map(str){
+			initMap()
+			$.getJSON("data.json",function(data){
+				var heatmapData = [];
+				for (var i = 0; i < data.length; i++) {
+					var coords = data[i].cor;
+					var latLng = new google.maps.LatLng(coords[0], coords[1]);
+					var nd = {location:latLng,weight:data[i]["weight"][str]}
+					//console.log(nd)
+					heatmapData.push(nd);
+				}
+				var heatmap = new google.maps.visualization.HeatmapLayer({
+					data: heatmapData,
+					dissipating: true,
+					radius :20,
+				});
+				heatmap.setMap(map)
+			})
+		}
+		
+		function draw_aurin(str){
+			initMap()
+			$.getJSON("aurin.json",function(data){
+				for (var i = 0; i <data.length; i++) {
+					var coords = data[i].cor;
+					var color = parseFloat(data[i][str+"_c"])*0.4
+					var cor = []
+					for (var j = 0; j<coords.length;j++){
+						cor.push({lat:coords[j][1], lng:coords[j][0]});
+					}
+					console.log(data[i][str+"_c"])
+					console.log(str+"_c")
+					var p = new google.maps.Polygon({
+					paths: cor,
+					strokeColor: "#32C8FF",
+					strokeOpacity: 0.8,
+					strokeWeight: 2,
+					fillColor: "#32C8FF",
+					fillOpacity: 0.2+color
+					});
+					p.setMap(map);
+				}
+			})
+		}
+	</script>
+	<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrpOiQ0B5LJZTTDJ6j_mKFApFwLqNcZqQ&libraries=visualization&callback=initMap">
+	</script>
+	
+  </body>
+</html>

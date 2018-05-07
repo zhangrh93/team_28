@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+	  <link href='http://fonts.googleapis.com/css?family=Open+Sans|Raleway' rel='stylesheet' type='text/css'>
+	  html, body, #map-canvas {
+      height: 100%;
+      margin: 0px;
+      padding: 0px;
+			font-family: 'Raleway', sans-serif;
+			z-index:1;
+    }
+  
+		#draggable {
+			z-index:100; 
+			background-color: rgba(200,200,255,.7); 
+			width: 160px;
+			padding: 18px;
+			position:absolute;
+			top:5px;
+			left:10px;
+			cursor: move;
+			border: black 0.5px solid;
+		}
+
+		#radius-label, #opacity-label, #max-label {
+			margin-top: 10px;
+		}
+
+		#radius-slider, #opacity-slider, #max-slider {
+			width:250px;
+			margin-top: 10px;
+		}
+		#project {
+			font-size: 10pt;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+
+		
+
+		#radius-slider .ui-slider-handle, 
+		#opacity-slider .ui-slider-handle,
+		#max-slider .ui-slider-handle {
+			cursor:pointer;
+		}
+		
+		.total{
+		 background-color:  #f4511e;
+		 border-radius: 18px;
+		 padding: 12px 28px;
+		 }
+		 .pratio{
+		 background-color:  #f4511e;
+		 border-radius: 18px;
+		 padding: 12px 28px;
+		 }
+		 .button{border-radius: 12px;}
+		<script src="./papaparse.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=visualization"></script>
+
+	<script src="./jquery-2.1.1.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+.atotal {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf));
+	background:-moz-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+	background:-webkit-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+	background:-o-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+	background:-ms-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+	background:linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf',GradientType=0);
+	background-color:#ededed;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#777777;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+.atotal:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed));
+	background:-moz-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+	background:-webkit-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+	background:-o-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+	background:-ms-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+	background:linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed',GradientType=0);
+	background-color:#dfdfdf;
+}
+.atotal:active {
+	position:relative;
+	top:1px;
+}
+
+    </style>
+  </head>
+  <body>
+	<div id="map"></div>
+		<div id="draggable">
+		<div id="showword"></div>
+		<br>
+		AURIN Data
+		<div id="tt">
+		<button  class="ttotal" name="tt" onclick = "set_l1(total1);changestate0();"   />Total tweets</button>
+		</div>
+		
+
+		<div id="rt">
+		<button  class="tratio" name="rt" onclick = "set_l1(ratio1);changestate1();"  />Rate of Positive Tweets</button>
+		</div>
+		
+		
+		<br><br>Tweets Data
+		<div id="ta">
+		<button  class="atotal" name="ta" onclick = "set_l2(tot2);changestate2();";  />total population</button>
+		</div>
+		
+		<div id="da">
+		<button  class="adensity" name="da" onclick = "set_l2(den2);changestate3();"  />population density</button>
+		</div>
+		
+		<div id="ia">
+		<button  class="aincome" name="ia" onclick = "set_l2(inc2);changestate4();"  />median weekly income</button>
+		</div>
+		
+		<div id="ea">
+		<button  class="aeducation" name="ea" onclick = "set_l2(edu2);changestate5();"  />average education year</button>
+		</div>
+		
+		<div id="aa">
+		<button  class="aage" name="aa" onclick = "set_l2(age2);changestate6();"  />age median</button>
+		</div>
+		<br>
+		<br>
+		<button class="nextpage"><a href="page2.html" style="text-decoration:none" >Next Page</a></button>
+
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script>
+		var map;
+		var total1 = "total"
+		var ratio1 = "ratio"
+		var tot2 = "tot_p"
+		var den2 = "pop_den"
+		var inc2 = "med_wek_inc"
+		var edu2 = "ave_edu_yea"
+		var age2 = "med_age"
+		
+		var l1 = "total"
+		var l2 = "tot_p"
+		
+		function initMap() {
+			
+			map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 9,
+				center: {lat: -38, lng: 145},
+				mapTypeId: 'terrain'
+			});
+			//var s = "total"
+			//draw_heat_map(s)
+			draw()
+		}
+		
+		function set_l1(str){
+			l1 = str
+			//draw()
+			initMap()
+		}
+		
+		function set_l2(str){
+			l2 = str
+			draw()
+			initMap()
+		}
+		
+		function draw(){
+			
+			
+			if (l1 != "clear"){
+			$.getJSON("map_data.json",function(data){
+				var heatmapData = [];
+                console.log(data.length)
+				for (var i = 0; i < data.length; i++) {
+					var coords = data[i].cor;
+					var latLng = new google.maps.LatLng(coords[0], coords[1]);
+					var nd = {location:latLng,weight:data[i]["weight"][l1]}
+					//console.log(nd)
+					heatmapData.push(nd);
+				}
+				var heatmap = new google.maps.visualization.HeatmapLayer({
+					data: heatmapData,
+					dissipating: true,
+					radius :20,
+				});
+				heatmap.setMap(map)
+			})
+			}else{
+				new google.maps.visualization.HeatmapLayer().setMap(null)
+			}
+			
+			if (l2 != "clear"){
+			$.getJSON("aurin.json",function(data){
+				for (var i = 0; i <data.length; i++) {
+					var coords = data[i].cor;
+					var color = parseFloat(data[i][l2+"_c"])*0.4
+					var cor = []
+					for (var j = 0; j<coords.length;j++){
+						cor.push({lat:coords[j][1], lng:coords[j][0]});
+					}
+					//console.log(data[i][str+"_c"])
+					//console.log(str+"_c")
+					var polygon = new google.maps.Polygon({
+					paths: cor,
+					strokeColor: "#FFFFFF",
+					strokeOpacity: 0.8,
+					strokeWeight: 2,
+					fillColor: "#F7A50C",
+					fillOpacity: 0.1+color
+					});
+					polygon.setMap(map);
+				}
+			})
+			}else{
+				new google.maps.Polygon().setMap(null)
+			}
+		}
+		
+		
+		
+	</script>
+	<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrpOiQ0B5LJZTTDJ6j_mKFApFwLqNcZqQ&libraries=visualization&callback=initMap">
+	</script>
+	<script>
+	function changestate0(){
+	document.getElementById('showword').innerHTML = 'Total Tweets';
+	/*but1.style.backgroundColor='#2222ff';*/}
+	function changestate1(){
+	document.getElementById('showword').innerHTML = 'Rate of Positive Tweets';
+
+	/*var but1=document.getElementById('rt');
+	but1.style.backgroundColor='#2222ff';*/}
+	function changestate2(){
+		document.getElementById('showword').innerHTML = 'Total Population';
+}
+	function changestate3(){
+		document.getElementById('showword').innerHTML = 'Population Density';
+}
+	function changestate4(){
+		document.getElementById('showword').innerHTML = 'Median Weekly Income';
+}
+	function changestate5(){
+		document.getElementById('showword').innerHTML = 'Average Education Year';
+}
+	function changestate6(){
+		document.getElementById('showword').innerHTML = 'Age Median';
+}
+	</script>
+	
+  </body>
+</html>
