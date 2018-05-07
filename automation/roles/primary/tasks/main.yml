@@ -1,0 +1,11 @@
+---
+
+- name: add first node to replica set
+  command: docker exec my-mongo mongo --eval {{item}}
+  with_items:
+    - 'rs.add({"host":\"{{host1}}\","priority":0,"votes:0"})'
+
+- name: add second node to replica set
+  command: docker exec my-mongo mongo --eval {{item}}
+  with_items:
+    - 'rs.add({"host":\"{{host2}}\","priority":0,"votes:0"})'

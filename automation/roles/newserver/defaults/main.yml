@@ -1,0 +1,16 @@
+docker_dependencies:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - software-properties-common
+
+tensorflow_dependencies:
+  - python3-pip
+  - python3-dev
+
+python_packages:
+  - tweepy
+  - pymongo
+  - numpy
+  - regex
+  - tensorflow

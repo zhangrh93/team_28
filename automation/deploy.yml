@@ -1,0 +1,19 @@
+---
+- hosts: newserver
+  remote_user: ubuntu
+  become: yes
+  roles:
+  - role: newserver
+
+- hosts: primary
+  remote_user: ubuntu
+  become: yes
+  roles:
+  - role: primary
+
+- hosts: newserver
+  remote_user: ubuntu
+  become: yes
+  tasks:
+  - name: start harversting and analysing
+    shell: bash ./start.sh
