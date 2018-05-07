@@ -1,0 +1,580 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+
+	<title>Page2</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<style type="text/css">
+.header, footer {
+    padding:1em;
+    color: black;
+    background-color: #F0FFFF;
+    clear: left;
+    text-align: center;
+    height:"5px";
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+<button><a href="page1.html" style="text-decoration:none" float="right">Previous Page</a></button>
+page2
+<button><a href="page3.html" style="text-decoration:none" float="right">Next Page</a></button>
+
+</div>
+
+<div class="panel">
+	<canvas id="myCanvas" width="1040" height="600" style="border:0px solid #c3c3c3;float:right;margin-right:100px"></canvas>
+	<form action="" method="get">
+
+<select id="select_box" name="my_html_select_box" size="30" width="5px" multiple="yes" onchange="drawFunc();" style="margin-left:70px;margin-top:60px">
+
+	<option>Melbourne City</option>
+	<option>Sydney</option>
+	<option>Australia</option>
+	<option>Victoria</option>
+
+	<option>Wamban</option>
+	<option>Pipers Creek</option>
+	<option>Caulfield</option>
+	<option>Caulfield North</option>
+	<option>Birregurra</option>
+	<option>Goulburn</option>
+	<option>Coomoora</option>
+	<option>Braeside</option>
+	<option>Corio</option>
+	<option>Kaleen</option>
+	<option>Cardinia</option>
+	<option>Bundoora</option>
+	<option>Forrest</option>
+	<option>Mininera</option>
+	<option>Panton Hill</option>
+	<option>Ruffy</option>
+	<option>Richmond</option>
+	<option>Ocean Grove</option>
+	<option>Coldstream</option>
+	<option>Balmoral</option>
+	<option>Werribee</option>
+	<option>Thomastown</option>
+	<option>Baddaginnie</option>
+	<option>Bogong Peaks Wilderness</option>
+	<option>Thurgoona</option>
+	<option>Hanwood</option>
+	<option>Arapiles</option>
+	<option>Torquay</option>
+	<option>Altona Meadows</option>
+	<option>Wakool</option>
+	<option>Eastern View</option>
+	<option>Mount Clear</option>
+	<option>Peechelba East</option>
+	<option>Bentleigh</option>
+	<option>Jerrabomberra</option>
+	<option>Garfield North</option>
+	<option>Rosebud</option>
+	<option>Noble Park</option>
+	<option>Paddys River</option>
+	<option>The Basin</option>
+	<option>Euberta</option>
+	<option>Cabramurra</option>
+	<option>Lakes Entrance</option>
+	<option>Burrumbuttock</option>
+	<option>Chelsea</option>
+	<option>Flinders</option>
+	<option>Brighton</option>
+	<option>Murtho</option>
+	<option>Keilor Park</option>
+	<option>Hampton</option>
+	<option>Wangaratta</option>
+	<option>Ascot Vale</option>
+	<option>Prahran</option>
+	<option>Brooklyn</option>
+	<option>Mornington</option>
+	<option>St Kilda</option>
+	<option>Windsor</option>
+	<option>Uriarra</option>
+	<option>Lake Goldsmith</option>
+	<option>Nanima</option>
+	<option>Campbell</option>
+	<option>Essendon</option>
+	<option>Old Tallangatta</option>
+	<option>Yering</option>
+	<option>Boneo</option>
+	<option>Quialigo</option>
+	<option>Fryerstown</option>
+	<option>Tarrengower</option>
+	<option>Braddon</option>
+	<option>Keilor</option>
+	<option>Sebastopol</option>
+	<option>Lockhart</option>
+	<option>Beaconsfield</option>
+	<option>Kensington</option>
+	<option>Molonglo Valley</option>
+	<option>Kingsville</option>
+	<option>Belgrave</option>
+	<option>Tamboritha</option>
+	<option>Werribee South</option>
+	<option>Mitchell Park</option>
+	<option>Shepparton</option>
+	<option>Queenscliff</option>
+	<option>Humula</option>
+	<option>Newtown</option>
+	<option>Merrill</option>
+	<option>Hawthorn</option>
+	<option>Gisborne</option>
+	<option>Laang</option>
+	<option>Tarcutta</option>
+	<option>Concongella</option>
+	<option>Brunswick</option>
+	<option>Albert Park</option>
+	<option>St Kilda West</option>
+	<option>Googong</option>
+	<option>Moonee Ponds</option>
+	<option>Highett</option>
+	<option>Trentham</option>
+	<option>Piangil</option>
+	<option>Port Campbell</option>
+	<option>Wandin North</option>
+	<option>Toorak</option>
+	<option>Lawson</option>
+	<option>Myrrhee</option>
+	<option>Maribyrnong</option>
+	<option>Fairfield</option>
+	<option>Beech Forest</option>
+	<option>Blampied</option>
+	<option>Mount Eliza</option>
+	<option>Bayswater</option>
+	<option>East Melbourne</option>
+	<option>St Kilda East</option>
+	<option>Carlton North</option>
+	<option>Grantville</option>
+	<option>Wabonga</option>
+	<option>Rendezvous Creek</option>
+	<option>Keysborough</option>
+	<option>West Footscray</option>
+	<option>Wirlinga</option>
+	<option>Broadford</option>
+	<option>Derrimut</option>
+	<option>Edithvale</option>
+	<option>Lake Bathurst</option>
+	<option>Glen Iris</option>
+	<option>Coonawarra</option>
+	<option>Murrumburrah</option>
+	<option>Aranda</option>
+	<option>Capital Hill</option>
+	<option>Carwoola</option>
+	<option>Cashmore</option>
+	<option>Warragul</option>
+	<option>Geelong</option>
+	<option>Bethanga</option>
+	<option>Russell</option>
+	<option>Eildon</option>
+	<option>Serviceton</option>
+	<option>Gruyere</option>
+	<option>Kalorama</option>
+	<option>Traralgon</option>
+	<option>Tathra</option>
+	<option>Oakleigh</option>
+	<option>Apollo Bay</option>
+	<option>Fitzroy North</option>
+	<option>Wahgunyah</option>
+	<option>Wilsons Promontory</option>
+	<option>Porepunkah</option>
+	<option>Charlton</option>
+	<option>Balnarring</option>
+	<option>Faraday</option>
+	<option>Blowering</option>
+	<option>Caroline Springs</option>
+	<option>Elwood</option>
+	<option>Seymour</option>
+	<option>Wamboin</option>
+	<option>Rosanna</option>
+	<option>Numurkah</option>
+	<option>Drysdale</option>
+	<option>Riddells Creek</option>
+	<option>Melbourne</option>
+	<option>Safety Beach</option>
+	<option>Willbriggie</option>
+	<option>Lancefield</option>
+	<option>Mansfield</option>
+	<option>Boorowa</option>
+	<option>Maryvale</option>
+	<option>Mingary</option>
+	<option>Wangaratta South</option>
+	<option>Curlewis</option>
+	<option>Balaclava</option>
+	<option>Macquarie</option>
+	<option>Princes Hill</option>
+	<option>Rosebud West</option>
+	<option>Aspendale</option>
+	<option>Glen Waverley</option>
+	<option>Hampton East</option>
+	<option>Caulfield East</option>
+	<option>Everton</option>
+	<option>Nichols Point</option>
+	<option>Kew East</option>
+	<option>Koo Wee Rup</option>
+	<option>Rhymney</option>
+	<option>Fyshwick</option>
+	<option>Maddingley</option>
+	<option>Pleasant Park</option>
+	<option>Olinda</option>
+	<option>Romsey</option>
+	<option>Koroit</option>
+	<option>Kosciuszko National Park</option>
+	<option>Bellarine</option>
+	<option>Merricks North</option>
+	<option>Bournda</option>
+	<option>Sandhurst</option>
+	<option>Burwood</option>
+	<option>Pyramid Hill</option>
+	<option>Tennent</option>
+	<option>Wonga Park</option>
+	<option>Table Top</option>
+	<option>Balwyn North</option>
+	<option>Seddon</option>
+	<option>Caulfield South</option>
+	<option>Southbank</option>
+	<option>Wantirna</option>
+	<option>South Melbourne</option>
+	<option>Briagolong</option>
+	<option>Kunama</option>
+	<option>Bentleigh East</option>
+	<option>Hadfield</option>
+	<option>Dookie College</option>
+	<option>Monbulk</option>
+	<option>Waggarandall</option>
+	<option>Albury</option>
+	<option>South Yarra</option>
+	<option>Spring Gully</option>
+	<option>Lyneham</option>
+	<option>Greens Creek</option>
+	<option>Mount Beauty</option>
+	<option>Wollert</option>
+	<option>Kybeyan</option>
+	<option>Yerong Creek</option>
+	<option>Notting Hill</option>
+	<option>Chadstone</option>
+	<option>Stony Creek</option>
+	<option>Mount Buller</option>
+	<option>Hepburn Springs</option>
+	<option>Meadow Heights</option>
+	<option>Essendon North</option>
+	<option>Lake George</option>
+	<option>Brookfield</option>
+	<option>Bodalla</option>
+	<option>Fingal</option>
+	<option>Carlton</option>
+	<option>Canterbury</option>
+	<option>Footscray</option>
+	<option>Point Leo</option>
+	<option>Springvale</option>
+	<option>Avonsleigh</option>
+	<option>Wesburn</option>
+	<option>Collingwood</option>
+	<option>Mount Martha</option>
+	<option>Daylesford</option>
+	<option>Dixons Creek</option>
+	<option>Oakleigh East</option>
+	<option>Narre Warren</option>
+	<option>Foster</option>
+	<option>Boole Poole</option>
+	<option>Wright</option>
+	<option>Clayton</option>
+	<option>Tuggeranong</option>
+	<option>Mitcham</option>
+	<option>Box Hill North</option>
+	<option>Deakin</option>
+	<option>Mount Burnett</option>
+	<option>Scotsburn</option>
+	<option>Nhill</option>
+	<option>Walkerville</option>
+	<option>Flemington</option>
+	<option>Acton</option>
+	<option>Merrigum</option>
+	<option>Lavington</option>
+	<option>Yarra Glen</option>
+	<option>Templestowe</option>
+	<option>Lauriston</option>
+	<option>Ivanhoe</option>
+	<option>Welshpool</option>
+	<option>Shepherds Flat</option>
+	<option>Clunes</option>
+	<option>Coburg North</option>
+	<option>Michelago</option>
+	<option>Abbotsford</option>
+	<option>Pearcedale</option>
+	<option>Reservoir</option>
+	<option>Heidelberg West</option>
+	<option>Williamstown</option>
+	<option>Tooleybuc</option>
+	<option>Hay South</option>
+	<option>Yass</option>
+	<option>Dromana</option>
+	<option>Warburton</option>
+	<option>Yallourn</option>
+	<option>Malmsbury</option>
+	<option>Sorrento</option>
+	<option>Brunswick East</option>
+	<option>Marlo</option>
+	<option>Murrumbeena</option>
+	<option>Taggerty</option>
+	<option>Mentone</option>
+	<option>Portland</option>
+	<option>Mandurang South</option>
+	<option>Tanjil South</option>
+	<option>Sutton</option>
+	<option>Nagambie</option>
+	<option>Boxers Creek</option>
+	<option>Rowville</option>
+	<option>South Wharf</option>
+	<option>Belconnen</option>
+	<option>Bonbeach</option>
+	<option>Malvern</option>
+	<option>Waterways</option>
+	<option>Kingsbury</option>
+	<option>Yambuk</option>
+	<option>Hawthorn East</option>
+	<option>Port Melbourne</option>
+	<option>Bells Beach</option>
+	<option>Morans Crossing</option>
+	<option>Bega</option>
+	<option>Lara</option>
+	<option>Geelong West</option>
+	<option>Frankston</option>
+	<option>Kingston</option>
+	<option>Stromlo</option>
+	<option>Burwood East</option>
+	<option>Winton</option>
+	<option>Burnley</option>
+	<option>Cremorne</option>
+	<option>Kyneton</option>
+	<option>Lake Wendouree</option>
+	<option>Newborough</option>
+	<option>Casterton</option>
+	<option>Parkes</option>
+	<option>Trungley Hall</option>
+	<option>Chirnside Park</option>
+	<option>Cape Conran</option>
+	<option>Waurn Ponds</option>
+	<option>Whitton</option>
+	<option>Princetown</option>
+	<option>Albion</option>
+	<option>Galong</option>
+	<option>Carrum Downs</option>
+	<option>Greenvale</option>
+	<option>Berwick</option>
+	<option>Red Hill</option>
+	<option>Main Ridge</option>
+	<option>Aberfeldie</option>
+	<option>Carnegie</option>
+	<option>Shepparton North</option>
+	<option>Yarraville</option>
+	<option>Churchill Island</option>
+	<option>Ventnor</option>
+	<option>Spotswood</option>
+	<option>Bangholme</option>
+	<option>Newhaven</option>
+	<option>Northcote</option>
+	<option>Warrnambool</option>
+	<option>Cranbourne East</option>
+	<option>Port Fairy</option>
+	<option>Ballan</option>
+	<option>Horsham</option>
+	<option>Cowes</option>
+	<option>Natya</option>
+	<option>North Melbourne</option>
+	<option>Nadgee</option>
+	<option>Elsternwick</option>
+	<option>Taylors Lakes</option>
+	<option>Brimin</option>
+	<option>Essendon Fields</option>
+	<option>Moranding</option>
+	<option>Cottles Bridge</option>
+	<option>Barwon Heads</option>
+	<option>Fyans Creek</option>
+	<option>Nelson</option>
+	<option>Woodstock</option>
+	<option>Majura</option>
+	<option>Forde</option>
+	<option>Epping</option>
+	<option>Collector</option>
+	<option>Narooma</option>
+	<option>Pascoe Vale</option>
+	<option>Mount Macedon</option>
+	<option>Narrandera</option>
+	<option>Creswick</option>
+	<option>Ringwood</option>
+	<option>Brighton East</option>
+	<option>Eynesbury</option>
+	<option>Clifton Hill</option>
+	<option>Preston</option>
+	<option>Richardson</option>
+	<option>Oakleigh South</option>
+	<option>Baxter</option>
+	<option>Axedale</option>
+	<option>Gungahlin</option>
+	<option>Bright</option>
+	<option>Hotham Heights</option>
+	<option>Kew</option>
+	<option>Niddrie</option>
+	<option>Mill Park</option>
+	<option>Sunbury</option>
+	<option>Morwell</option>
+	<option>Shoreham</option>
+	<option>West Melbourne</option>
+	<option>Walhalla</option>
+	<option>Croydon</option>
+	<option>Laggan</option>
+	<option>Travancore</option>
+	<option>Springmount</option>
+	<option>Dandenong</option>
+	<option>Forest Hill</option>
+	<option>Thornbury</option>
+	<option>Docklands</option>
+	<option>Healesville</option>
+	<option>Tullamarine</option>
+	<option>Yarragon</option>
+	<option>Lynbrook</option>
+	<option>Glen Huntly</option>
+	<option>Fitzroy</option>
+	<option>Wagga Wagga</option>
+	<option>Sale</option>
+	<option>Red Cliffs</option>
+	<option>Middle Park</option>
+	<option>Lake Powell</option>
+	<option>Eaglehawk</option>
+	<option>Pakenham</option>
+	<option>Cohuna</option>
+	<option>Sandringham</option>
+	<option>Bruce</option>
+	<option>Point Cook</option>
+	<option>Red Hill South</option>
+	<option>Melbourne Airport</option>
+	<option>Williamstown North</option>
+	<option>Canberra City</option>
+	<option>Bellbrae</option>
+	<option>Box Hill</option>
+	<option>Armadale</option>
+	<option>Smeaton</option>
+	<option>Tarwin Lower</option>
+	<option>Ballarat Central</option>
+	<option>Beveridge</option>
+	<option>Langwarrin</option>
+	<option>Lorne</option>
+	<option>Alphington</option>
+	<option>Mount Fairy</option>
+	<option>Parkville</option>
+	<option>Camberwell</option>
+	<option>Mildura</option>
+	<option>Balwyn</option>
+	<option>Surrey Hills</option>
+	<option>Avenel</option>
+	<option>Navarre</option>
+	<option>Candelo</option>
+	<option>Bendigo</option>
+	<option>Mount Evelyn</option>
+	<option>Sunshine</option>
+	<option>Queanbeyan</option>
+	<option>Buangor</option>
+	<option>Brunswick West</option>
+	<option>Allansford</option>
+	<option>Mickleham</option>
+	<option>Merricks</option>
+	<option>Howlong</option>
+	<option>Parkdale</option>
+	<option>Newport</option>
+	<option>Coburg</option>
+	<option>Marulan</option>
+	<option>Mogilla</option>
+	<option>Mount Helen</option>
+	<option>Molesworth</option>
+	<option>Glendonald</option>
+	<option>Cape Schanck</option>
+	<option>Rosewhite</option>
+	<option>Summerlands</option>
+	<option>Silvan</option>
+
+
+</select>
+</form>
+
+</div>
+
+<script type="text/javascript">
+	function drawFunc() {
+	  $.getJSON("chart_data.json", function(data) {
+	    var selectBox = document.getElementById("select_box");
+	    var suburb = selectBox.options[selectBox.selectedIndex].value;
+
+	    var sentiment = data[suburb]["sentiment"];
+	    var time = data[suburb]["time"];
+
+			var canvas = document.getElementById("myCanvas")
+	    var ctx = canvas.getContext('2d');
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+			var chartWidth = 1040;
+			var chartHeight = 600;
+
+			canvas.width = chartWidth;
+			canvas.height = chartHeight;
+
+	    var myLine = new Chart(ctx, {
+	      type: 'line',
+	      data: {
+	        labels: [...Array(24).keys()],
+	        datasets: [{
+	          label: suburb,
+	          data: time,
+	          borderColor: 'rgb(153, 102, 255)',
+	          backgroundColor: "rgba(220,220,220,0.2)",
+	          pointBackgroundColor: "#fff"
+	        }],
+	      },
+	      options: {
+	        responsive: false,
+	        title: {
+	          display: true,
+	          text: 'proportion of positive sentiment over time'
+	        },
+	        scales: {
+	          yAxes: [{
+	            ticks: {
+	              min: 0,
+	              max: 1
+	            }
+	          }]
+	        }
+	      }
+	    });
+			canvas.width = chartWidth;
+			canvas.height = chartHeight;
+
+			/*
+	    var ctx = document.getElementById("myChart2").getContext('2d');
+	    var myDoughnutChart = new Chart(ctx, {
+	      type: 'doughnut',
+	      data: {
+	        labels: ['positive', 'negative', 'neutral'],
+	        datasets: [{
+	          data: sentiment,
+	          backgroundColor: ['rgb(255, 102, 153)', 'rgb(0, 153, 255)', 'rgb(255, 204, 102)']
+	        }],
+	      },
+	      options: {
+	        responsive: false,
+	        title: {
+	          display: true,
+	          text: 'distribution over sentiment'
+	        }
+	      }
+	    });*/
+	  });
+	}
+</script>
+
+</body>
+</html>
