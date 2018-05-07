@@ -6,6 +6,7 @@ ip_address = sys.argv[1]
 collection_name = sys.argv[2]
 inputCollection = sys.argv[3]
 location = sys.argv[4]
+location.replace('_', ' ')
 
 mongo_client = pymongo.MongoClient(ip_address, 27017)
 db = mongo_client['myDatabase']
@@ -38,7 +39,7 @@ except:
 
 try:   
 	result = db[inputCollection].map_reduce(mapper, reducer, out = "result", query = {"sentiment" : "positive"})
-	for item in result.find():
+	for .replace('_', ' ')item in result.find():
 		outputCollection.update_one({'_id' : item['_id']}, {'$set' : {'sentiment.positive' : item['value']}})
 except:
     pass

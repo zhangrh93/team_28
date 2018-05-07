@@ -2,9 +2,11 @@ import pymongo
 import tweepy
 import datetime
 import sys
+import json
 
 if __name__ == '__main__':
     ip_address = sys.argv[1]
+    num = sys.argv[2]
 
     mongo_client = pymongo.MongoClient(ip_address, 27017)
     db = mongo_client['myDatabase']

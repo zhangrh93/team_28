@@ -10,7 +10,6 @@ if __name__ == '__main__':
 	mongo_client = pymongo.MongoClient(ip_address, 27017)
 	db = mongo_client['myDatabase']
 	outputCollection = db[collection_name]
-	outputCollection.remove()
 
 	mapper = Code("""
 	function() {
