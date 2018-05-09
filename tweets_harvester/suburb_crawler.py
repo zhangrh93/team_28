@@ -1,3 +1,12 @@
+"""
+Team 28
+Ruihan Zhang 865529
+Linrong Chen 854645
+Ming Yin 816159
+Hongyun Ma 805266
+Jinge Zhang 769474
+"""
+
 import pymongo
 import tweepy
 import datetime
