@@ -3,9 +3,9 @@ import time
 import os
 from boto.ec2.regioninfo import RegionInfo
 
-access_key_id = '608ec35c1a3a43b0983292681f470106'
-secret_access_key='9a0df8c2e5304c339bb47cc0ad592c81'
-primary_ip = "115.146.86.112"
+access_key_id = 'XXXXXXXXXXXXXXXXXXXXXXX'
+secret_access_key='XXXXXXXXXXXXXXXXXXXXXXXXX'
+primary_ip = "XXX.XXX.XXX.XXX"
 
 region = RegionInfo(name='melbourne', endpoint='nova.rc.nectar.org.au')
 ec2_conn = boto.connect_ec2(aws_access_key_id=access_key_id,

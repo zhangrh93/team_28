@@ -8,7 +8,7 @@ import json
 import sys
 
 if __name__ == '__main__':
-    with open("locations.json","r") as file:
+    with open("/home/ubuntu/harvester/locations.json","r") as file:
         location_str = json.load(file)
     ip_address = sys.argv[1]
     collection_name = sys.argv[2]
@@ -18,7 +18,7 @@ if __name__ == '__main__':
     db = mongo_client.myDatabase
     collection = db[collection_name]
     num = sys.argv[4]
-    with open("twKey.json","r") as f:
+    with open("/home/ubuntu/harvester/twKey.json","r") as f:
         key = json.load(f)
     consumer_key = key[num]["consumer_key"]
     consumer_secret = key[num]["consumer_secret"]
@@ -52,5 +52,3 @@ if __name__ == '__main__':
     twitterStream = Stream(auth, listener())
 
     twitterStream.filter(locations = [float(location_list[0]),float(location_list[1]),float(location_list[2]),float(location_list[3])])
-
-
